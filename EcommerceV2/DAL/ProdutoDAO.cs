@@ -15,11 +15,23 @@ namespace EcommerceV2.DAL
             _context = context;
         }
 
-        public void Cadastrar(Produto p)
+        public bool Cadastrar(Produto p)
         {
-            _context.Produtos.Add(p);
-            _context.SaveChanges();
+            if(BuscarProdutoPorNome(p) == null)
+            {
+                _context.Produtos.Add(p);
+                _context.SaveChanges();
+                return true;
+            }
+            return false;
         }
+
+        public Produto BuscarProdutoPorNome(Produto p)
+        {
+            return _context.Produtos.FirstOrDefault
+                (x => x.Nome.Equals(p.Nome));
+        }
+
         public List<Produto> Listar()
         {
             return _context.Produtos.ToList();

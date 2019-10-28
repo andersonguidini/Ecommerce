@@ -30,8 +30,12 @@ namespace EcommerceV2.Controllers
         [HttpPost]
         public IActionResult Cadastrar(Produto p)
         {
-            _produtoDAO.Cadastrar(p);
-            return RedirectToAction("Index");
+            if(_produtoDAO.Cadastrar(p) == true)
+            {
+                return RedirectToAction("Index");
+            }
+
+            return View();
         }
 
         public IActionResult Remover(int id)
