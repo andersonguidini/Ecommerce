@@ -7,22 +7,31 @@
 <form asp-action="Cadastrar" method="post">
     <fieldset>
         <legend>Cadastrar Produto</legend>
+        <div asp-validation-summary="ModelOnly" class="text-primary"></div>
 
         <div class="form-group">
-            <label>Nome:</label>
+            <label asp-for="Nome"></label>
             <input type="text" class="form-control" asp-for="Nome" placeholder="Nome" />
+            <span asp-validation-for="Nome"
+                class="text-primary"></span>
         </div>
         <div class="form-group">
-            <label>Descrição:</label>
+            <label asp-for="Descricao"></label>
             <input type="text" class="form-control" asp-for="Descricao" placeholder="Descrição" />
+            <span asp-validation-for="Descricao"
+                  class="text-primary"></span>
         </div>
         <div class="form-group">
-            <label>Preço:</label>
+            <label asp-for="preco"></label>
             <input type="text" class="form-control" asp-for="preco" placeholder="Preço" />
+            <span asp-validation-for="preco"
+                  class="text-primary"></span>
         </div>
         <div class="form-group">
-            <label>Quantidade:</label>
+            <label asp-for="Qtd"></label>
             <input type="text" class="form-control" asp-for="Qtd" placeholder="Quantidade" />
+            <span asp-validation-for="Qtd"
+                  class="text-primary"></span>
         </div>
         <button type="submit" class="btn btn-info">Cadastrar</button>
     </fieldset>

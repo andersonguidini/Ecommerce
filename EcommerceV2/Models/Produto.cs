@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace EcommerceV2.Models
 {
+    //Annotations  ASP.NET Core 
     [Table("Produtos")]
     public class Produto
     {
@@ -14,10 +15,26 @@ namespace EcommerceV2.Models
 
         [Key]
         public int Id { get; set; }
-        public String Nome { get; set; }
-        public int Qtd { get; set; }
-        public Double preco { get; set; }
-        public String Descricao { get; set; }
+
+        [Display(Name ="Nome do produto:")]
+        [Required(ErrorMessage = "Campo obrigatório!")]
+        public string Nome { get; set; }
+
+        [Display(Name ="Quantidade do produto:")]
+        [Required(ErrorMessage = "Campo obrigatório!")]
+        [Range(1, 1000, ErrorMessage = "Quantidade apenas entre 1 e 1000")]
+        public int? Qtd { get; set; }
+
+        [Display(Name ="Preço do produto:")]
+        [Required(ErrorMessage = "Campo obrigatório!")]
+        public double? preco { get; set; }
+
+        [Display(Name ="Descrição do produto:")]
+        [Required(ErrorMessage = "Campo obrigatório!")]
+        [MinLength(5, ErrorMessage = "No mínimo 5 caracteres!")]
+        [MaxLength(100, ErrorMessage = "No máximo 100 caracteres!")]
+        public string Descricao { get; set; }
+
         public DateTime CriadoEm { get; set; }
     }
 }
