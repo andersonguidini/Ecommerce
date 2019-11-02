@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace EcommerceV2.Models
+namespace Domain
 {
     //Annotations  ASP.NET Core 
     [Table("Produtos")]
@@ -36,5 +36,7 @@ namespace EcommerceV2.Models
         public string Descricao { get; set; }
 
         public DateTime CriadoEm { get; set; }
+
+        public Categoria Categoria { get; set; }
     }
 }

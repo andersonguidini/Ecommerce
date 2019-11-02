@@ -1,12 +1,12 @@
-﻿using EcommerceV2.Models;
+﻿using Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace EcommerceV2.DAL
+namespace Repository
 {
-    public class ProdutoDAO
+    public class ProdutoDAO:IRepository<Produto>
     {
         private readonly Context _context;
 
@@ -32,17 +32,9 @@ namespace EcommerceV2.DAL
                 (x => x.Nome.Equals(p.Nome));
         }
 
-        public List<Produto> Listar()
-        {
-            return _context.Produtos.ToList();
-        }
-        public Produto BuscarProdutoPorId(int id)
-        {
-            return _context.Produtos.Find(id);
-        }
         public void Remover(int id)
         {
-            _context.Produtos.Remove(BuscarProdutoPorId(id));
+            _context.Produtos.Remove(BuscarPorId(id));
             _context.SaveChanges();
         }
 
@@ -50,6 +42,16 @@ namespace EcommerceV2.DAL
         {
             _context.Produtos.Update(p);
             _context.SaveChanges();
+        }
+
+        public Produto BuscarPorId(int id)
+        {
+            return _context.Produtos.Find(id);
+        }
+
+        public List<Produto> ListarTodos()
+        {
+            return _context.Produtos.ToList();
         }
     }
 }

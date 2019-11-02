@@ -2,28 +2,33 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using EcommerceV2.DAL;
-using EcommerceV2.Models;
+using Domain;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Repository;
 
 namespace EcommerceV2.Controllers
 {
     public class ProdutoController : Controller
     {
         private readonly ProdutoDAO _produtoDAO;
+        private readonly CategoriaDAO _categoriaDAO;
 
-        public ProdutoController(ProdutoDAO produtoDAO)
+        public ProdutoController(ProdutoDAO produtoDAO, CategoriaDAO categoriaDAO)
         {
             _produtoDAO = produtoDAO;
+            _categoriaDAO = categoriaDAO;
         }
         public IActionResult Index()
         {
             ViewBag.DataHora = DateTime.Now;
-            return View(_produtoDAO.Listar());
+            return View(_produtoDAO.ListarTodos());
         }
 
         public IActionResult Cadastrar()
         {
+            ViewBag.Categorias =
+                new SelectList(_categoriaDAO.ListarTodos(), "CategoriaId", "Nome");
             return View();
         }
 
@@ -51,7 +56,7 @@ namespace EcommerceV2.Controllers
 
         public IActionResult Editar(int id)
         {
-            return View(_produtoDAO.BuscarProdutoPorId(id));
+            return View(_produtoDAO.BuscarPorId(id));
         }
 
         [HttpPost]
