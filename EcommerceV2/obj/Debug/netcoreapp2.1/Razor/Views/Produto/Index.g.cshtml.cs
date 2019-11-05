@@ -68,7 +68,7 @@ using Domain;
             WriteLiteral("\r\n\r\n<h2>Gerenciamento dos Produtos</h2>\r\n");
             EndContext();
             BeginContext(115, 71, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "bb7151fca5794f9884fa9a973e4fca9b", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5d1e002adbdc43f393ef738bc8074af6", async() => {
                 BeginContext(165, 17, true);
                 WriteLiteral("Cadastrar Produto");
                 EndContext();
@@ -165,7 +165,7 @@ using Domain;
             WriteLiteral("</td>\r\n                <td>\r\n                    ");
             EndContext();
             BeginContext(863, 83, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "86df507712f743ceac277e9ff9611ad3", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3bec54f3805b4d0c8ea259ce7ed4a91e", async() => {
                 BeginContext(935, 7, true);
                 WriteLiteral("Remover");
                 EndContext();
@@ -201,7 +201,7 @@ using Domain;
             WriteLiteral("\r\n                </td>\r\n                <td>\r\n                    ");
             EndContext();
             BeginContext(1013, 80, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c56c7f7931b54ed384715e93bfab1082", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f1a37d4b3d7a4abd9029d0d690b1d379", async() => {
                 BeginContext(1083, 6, true);
                 WriteLiteral("Editar");
                 EndContext();

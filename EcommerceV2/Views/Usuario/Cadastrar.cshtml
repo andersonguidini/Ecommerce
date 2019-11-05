@@ -1,0 +1,69 @@
+﻿
+@{
+    
+}
+
+@model Usuario
+
+<form asp-action="Cadastrar" method="post">
+    <fieldset>
+        <legend>Dados de Endereço</legend>
+        <div asp-validation-summary="ModelOnly" class="text-primary"></div>
+
+        <div class="form-group" id="Cep">
+            <label asp-for="Endereco.Cep"></label>
+            <input type="text" class="form-control" asp-for="Endereco.Cep" placeholder="Cep" />
+            <span asp-validation-for="Endereco.Cep"
+                  class="text-primary"></span>
+        </div>
+        <input type="submit" class="btn btn-info" value="Buscar" asp-action="BuscarCep" asp-controller="Usuario"/>
+        <div class="form-group" id="Rua">
+            <label asp-for="Endereco.Logradouro"></label>
+            <input type="text" class="form-control" asp-for="Endereco.Logradouro" placeholder="Rua" readonly/>
+            <span asp-validation-for="Endereco.Logradouro"
+                  class="text-primary"></span>
+        </div>
+        <div class="form-group" id="Bairro">
+            <label asp-for="Endereco.Bairro"></label>
+            <input type="text" class="form-control" asp-for="Endereco.Bairro" placeholder="Bairro" readonly/>
+            <span asp-validation-for="Endereco.Bairro"
+                  class="text-primary"></span>
+        </div>
+        <div class="form-group" id="Cidade">
+            <label asp-for="Endereco.Localidade"></label>
+            <input type="text" class="form-control" asp-for="Endereco.Localidade" placeholder="Cidade" readonly/>
+            <span asp-validation-for="Endereco.Localidade"
+                  class="text-primary"></span>
+        </div>
+        <div class="form-group" id="Estado">
+            <label asp-for="Endereco.Uf"></label>
+            <input type="text" class="form-control" asp-for="Endereco.Uf" placeholder="Estado" readonly/>
+            <span asp-validation-for="Endereco.Uf"
+                  class="text-primary"></span>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>Dados Pessoais</legend>
+
+        <div class="form-group" id="E-mail">
+            <label asp-for="Email"></label>
+            <input type="text" class="form-control" asp-for="Email" placeholder="E-mail" />
+            <span asp-validation-for="Email"
+                  class="text-primary"></span>
+        </div>
+        <div class="form-group" id="Senha">
+            <label asp-for="Senha"></label>
+            <input type="text" class="form-control" asp-for="Senha" placeholder="Senha" />
+            <span asp-validation-for="Senha"
+                  class="text-primary"></span>
+        </div>
+        <div class="form-group" id="ConfirmacaoSenha">
+            <label asp-for="ConfirmacaoSenha"></label>
+            <input type="text" class="form-control" asp-for="ConfirmacaoSenha" placeholder="Confirmação da senha" />
+            <span asp-validation-for="ConfirmacaoSenha"
+                  class="text-primary"></span>
+        </div>
+        <input type="submit" class="btn btn-info" value="Cadastrar" asp-action="Cadastrar"/>
+    </fieldset>
+</form>
+

@@ -33,10 +33,14 @@ namespace EcommerceV2.Controllers
         }
 
         [HttpPost]
-        public IActionResult Cadastrar(Produto p)
+        public IActionResult Cadastrar(Produto p, int drpCategorias)
         {
+            ViewBag.Categorias =
+                new SelectList(_categoriaDAO.ListarTodos(), "CategoriaId", "Nome");
+
             if (ModelState.IsValid)
             {
+                p.Categoria = _categoriaDAO.BuscarPorId(drpCategorias);
                 if (_produtoDAO.Cadastrar(p))
                 {
                     return RedirectToAction("Index");
@@ -44,6 +48,7 @@ namespace EcommerceV2.Controllers
                 ModelState.AddModelError("", "Esse produto já existe!");
             }
             return View(p);
+
             
            
         }

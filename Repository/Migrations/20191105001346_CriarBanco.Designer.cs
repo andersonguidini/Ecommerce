@@ -10,7 +10,7 @@ using Repository;
 namespace Repository.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20191102010634_CriarBanco")]
+    [Migration("20191105001346_CriarBanco")]
     partial class CriarBanco
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,6 +34,29 @@ namespace Repository.Migrations
                     b.HasKey("CategoriaId");
 
                     b.ToTable("Categorias");
+                });
+
+            modelBuilder.Entity("Domain.Endereco", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Bairro");
+
+                    b.Property<string>("Cep");
+
+                    b.Property<DateTime>("CriadoEm");
+
+                    b.Property<string>("Localidade");
+
+                    b.Property<string>("Logradouro");
+
+                    b.Property<string>("Uf");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Enderecos");
                 });
 
             modelBuilder.Entity("Domain.Produto", b =>
@@ -66,11 +89,39 @@ namespace Repository.Migrations
                     b.ToTable("Produtos");
                 });
 
+            modelBuilder.Entity("Domain.Usuario", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CriadoEm");
+
+                    b.Property<string>("Email");
+
+                    b.Property<int?>("EnderecoId");
+
+                    b.Property<string>("Senha");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EnderecoId");
+
+                    b.ToTable("Usuarios");
+                });
+
             modelBuilder.Entity("Domain.Produto", b =>
                 {
                     b.HasOne("Domain.Categoria", "Categoria")
                         .WithMany()
                         .HasForeignKey("CategoriaId");
+                });
+
+            modelBuilder.Entity("Domain.Usuario", b =>
+                {
+                    b.HasOne("Domain.Endereco", "Endereco")
+                        .WithMany()
+                        .HasForeignKey("EnderecoId");
                 });
 #pragma warning restore 612, 618
         }
