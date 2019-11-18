@@ -5,43 +5,31 @@
 @model List<Produto>
 
 
-<h2>Gerenciamento dos Produtos</h2>
-<a asp-action="Cadastrar" class="btn btn-success">Cadastrar Produto</a>
-
-<table class="table table-hover" style="margin-top:15px;margin-bottom:15px">
-    <thead>
-        <tr>
-            <th>Nome</th>
-            <th>Descrição</th>
-            <th>Preço</th>
-            <th>Quantidade</th>
-            <th>Imagem</th>
-            <th>Criado em</th>
-            <th></th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (Produto item in Model)
+<div id="Categorias">
+    <ul class="pagination pagination-lg justify-content-center" style="margin:20px 0">
+        @foreach (Categoria item in ViewBag.Categorias)
         {
-            <tr>
-                <td>@item.Nome</td>
-                <td>@item.Descricao</td>
-                <td>@item.preco.Value.ToString("C2")</td>
-                <td>@item.Qtd</td>
-                <td>
-                    <img src="~/ecommerceImagens/@item.Imagem"
-                         alt="@item.Descricao" style="height:120px;width:120px"/>
-                </td>
-                <td>@item.CriadoEm</td>
-                <td>
-                    <a class="btn btn-primary" asp-action="Remover" asp-route-id="@item.Id">Remover</a>
-                </td>
-                <td>
-                    <a class="btn btn-danger" asp-action="Editar" asp-route-id="@item.Id">Editar</a>
-                </td>
-            </tr>
+            <li class="page-item">
+                <a class="page-link" asp-action="Index" asp-controller="Home" asp-route-id="@item.CategoriaId">
+                    @item.Nome
+                </a>
+            </li>
         }
-    </tbody>
-</table>
-<b>Dados atualizado:</b> @dataHora
+    </ul>
+</div>
+
+<div class="row" id="Produtos">
+    @foreach (Produto item in Model)
+    {
+        <div class="col-md-3" style="text-align:center; margin-bottom:15px">
+            <a asp-action="Detalhes" asp-controller="Home" asp-route-id="@item.Id">
+                <img src="~/ecommerceimagens/@item.Imagem" alt="@item.Descricao"
+                     style="width:200px;height:180px" class="img-thumbnail" /><br />
+            </a>
+            <a asp-action="Detalhes" asp-controller="Home" asp-route-id="@item.Id">
+                @item.Nome
+            </a><br />
+            <b>Preço: </b> @item.preco.Value.ToString("C2")
+        </div>
+    }
+</div>

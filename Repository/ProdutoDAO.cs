@@ -1,4 +1,5 @@
 ﻿using Domain;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,6 +53,15 @@ namespace Repository
         public List<Produto> ListarTodos()
         {
             return _context.Produtos.ToList();
+        }
+
+        public List<Produto> ListarPorCategoria(int? id)
+        {
+            return _context.
+                Produtos.
+                Include(x => x.Categoria).
+                Where(x => x.Categoria.CategoriaId == id).
+                ToList();
         }
     }
 }
