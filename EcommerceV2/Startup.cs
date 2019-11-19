@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EcommerceV2.Utils;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -37,6 +38,10 @@ namespace EcommerceV2
 
             services.AddScoped<ProdutoDAO>();
             services.AddScoped<CategoriaDAO>();
+            services.AddScoped<UsuarioDAO>();
+            services.AddScoped<ItemVendaDAO>();
+            services.AddScoped<UtilsSession>();
+            services.AddHttpContextAccessor();
 
             //Configuração da sessão deve ser feita antes do services.AddMvc()
             services.AddSession();

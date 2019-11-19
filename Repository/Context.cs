@@ -20,5 +20,7 @@ namespace Repository
         public DbSet<Usuario> Usuarios { get; set; }
 
         public DbSet<Endereco> Enderecos { get; set; }
+
+        public DbSet<ItemVenda> ItensVenda { get; set; }
     }
 }

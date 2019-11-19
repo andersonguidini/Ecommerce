@@ -19,7 +19,7 @@ appsettings.json
 6 - Não é necessário o comando Enable-Migrations
 
 7 - Adicionar uma migração e atualizar o banco
-	- Add-Migration NomeMigracao; Update-Database -verbose
+	- Add-Migration NomeMigracao -Project: Repository; Update-Database -Project: Repository -verbose
 
 
 
