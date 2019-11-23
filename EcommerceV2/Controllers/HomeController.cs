@@ -32,31 +32,48 @@ namespace EcommerceV2.Controllers
             }
             return View(_produtoDAO.ListarPorCategoria(id));
         }
-
         public IActionResult Detalhes(int id)
         {
             return View(_produtoDAO.BuscarPorId(id));
         }
+        public IActionResult RemoverDoCarrinho(int id)
+        {
+            _itemVendaDAO.Remover(id);
+            return RedirectToAction("CarrinhoCompras");
+        }
+        public IActionResult CarrinhoCompras()
+        {
+            ViewBag.TotalCarrinho = _itemVendaDAO.
+                RetornarTotalCarrinho(_utilsSession.RetornarCarrinhoId());
 
+            return View(_itemVendaDAO.
+                ListarItensPorCarrinhoId
+                (_utilsSession.RetornarCarrinhoId()));
+        }
+        public IActionResult AumentarQuantidade(int id)
+        {
+            _itemVendaDAO.AumentarQuantidade(id);
+            return RedirectToAction("CarrinhoCompras");
+        }
+        public IActionResult DiminuirQuantidade(int id)
+        {
+            _itemVendaDAO.DiminuirQuantidade(id);
+            return RedirectToAction("CarrinhoCompras");
+        }
         public IActionResult AdicionarAoCarrinho(int id)
         {
+            //Adicionar os produtos dentro do carrinho
             Produto p = _produtoDAO.BuscarPorId(id);
-            ItemVenda item = new ItemVenda
+            ItemVenda i = new ItemVenda
             {
                 Produto = p,
                 Quantidade = 1,
                 Preco = p.preco.Value,
                 CarrinhoId = _utilsSession.RetornarCarrinhoId()
             };
-
-            _itemVendaDAO.Cadastrar(item);
+            //Gravar o objeto na tabela
+            _itemVendaDAO.Cadastrar(i);
             return RedirectToAction("CarrinhoCompras");
-        }
-
-        public IActionResult CarrinhoCompras()
-        {
-            string carrinhoId = _utilsSession.RetornarCarrinhoId();
-            return View(_itemVendaDAO.ListarPorCarrinhoId(carrinhoId));
         }
     }
 }
